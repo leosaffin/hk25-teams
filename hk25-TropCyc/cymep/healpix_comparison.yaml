@@ -8,7 +8,7 @@ filename_out: "tcs"
 # Set to "global" for full global
 # Set to "all" to do all basins individually (including both hemispheres and global)
 # Use a list to specify specific basins
-basin: ["global", "NATL", "ENP", "CP", "WNP", "NI", "SI", "AUS", "SP"]
+basin: ["global", "N", "S", "NATL", "ENP", "CP", "WNP", "NI", "SI", "AUS", "SP"]
 
 # Length of side of each square gridbox used for spatial analysis in degrees
 gridsize: 8.0
@@ -75,6 +75,14 @@ load_keywords:
 # - yearspermember: Number of years per ensemble member in the datasets
 # - windcorrs:      Wind speed correction factor
 datasets:
+  ERA5:
+    filename: ERA5.csv
+    load_keywords:
+      rename:
+        wind10: wind
+    ensmembers: 1
+    yearspermember: 1
+    windcorrs: 1.0
   um_glm_n1280_GAL9:
     filename: um_glm_n1280_GAL9.csv
     load_keywords:
@@ -85,9 +93,12 @@ datasets:
     yearspermember: 1
     windcorrs: 1.0
 
-  um_glm_n1280_GAL9_healpix:
-    filename: extra/um_glm_n1280_GAL9_Stella.csv
-    load_keywords: {}
+  um_glm_n1280_CoMA9_TBv1p2:
+    filename: um_glm_n1280_CoMA9_TBv1p2.csv
+    load_keywords:
+      rename:
+        psl_min: slp
+        sfcwind_max: wind
     ensmembers: 1
     yearspermember: 1
     windcorrs: 1.0
@@ -102,6 +113,57 @@ datasets:
     yearspermember: 1
     windcorrs: 1.0
 
+  ifs_tco3999-ng5_deepoff:
+    filename: ifs_tco3999-ng5_deepoff.csv
+    load_keywords:
+      rename:
+        psl: slp
+    ensmembers: 1
+    yearspermember: 1
+    windcorrs: 1.0
 
+  ifs_tco3999-ng5_rcbmf:
+    filename: ifs_tco3999-ng5_rcbmf.csv
+    load_keywords:
+      rename:
+        psl: slp
+    ensmembers: 1
+    yearspermember: 1
+    windcorrs: 1.0
 
+  casesm2_10km_cumulus:
+    filename: casesm2_10km_cumulus.csv
+    load_keywords: {}
+    ensmembers: 1
+    yearspermember: 1
+    windcorrs: 1.0
 
+  casesm2_10km_nocumulus:
+    filename: casesm2_10km_nocumulus.csv
+    load_keywords: {}
+    ensmembers: 1
+    yearspermember: 1
+    windcorrs: 1.0
+
+  scream_ne120:
+    filename: scream_ne120.txt
+    load_keywords:
+      source: tempestextremes
+      tempest_extremes_unstructured: True
+      variable_names:
+        - slp
+        - wind
+        - elevation
+        - precip
+    ensmembers: 1
+    yearspermember: 1
+    windcorrs: 1.0
+
+  icon_d3hp:
+    filename: 2D/icon_d3hp003.csv
+    load_keywords:
+      rename:
+        psl: slp
+    ensmembers: 1
+    yearspermember: 1
+    windcorrs: 1.0
